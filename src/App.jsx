@@ -127,8 +127,13 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        <Settings2 size={28} color="#60a5fa" />
-        <h1 className="app-title">Ayudante CSS Tiendanube</h1>
+        <div className="app-title-group">
+          <Settings2 size={28} color="#558A87" />
+          <h1 className="app-title">Simple CSS para Tiendanube</h1>
+        </div>
+        <a className="developer-link" href="https://viranmd.com" target="_blank" rel="noreferrer">
+          Desarrollado por Viran
+        </a>
       </header>
       
       <main className="main-content">
@@ -138,8 +143,8 @@ export default function App() {
             <h2 className="section-title">Precio Principal</h2>
             <ControlInput label="Color" type="color" value={styles.mainPrice.color} onChange={(v) => updateStyle('mainPrice', 'color', v)} />
             <div style={{display: 'flex', gap: '1rem'}}>
-              <ControlInput label="Tamaño (px)" value={styles.mainPrice.fontSize} onChange={(v) => updateStyle('mainPrice', 'fontSize', v)} />
-              <ControlInput label="Grosor" value={styles.mainPrice.fontWeight} onChange={(v) => updateStyle('mainPrice', 'fontWeight', v)} />
+              <ControlInput label="Tamaño (px)" value={styles.mainPrice.fontSize} onChange={(v) => updateStyle('mainPrice', 'fontSize', v)} showStepper />
+              <ControlInput label="Grosor" value={styles.mainPrice.fontWeight} onChange={(v) => updateStyle('mainPrice', 'fontWeight', v)} showStepper />
             </div>
           </div>
 
@@ -147,8 +152,8 @@ export default function App() {
             <h2 className="section-title">Precio Tachado</h2>
             <ControlInput label="Color" type="color" value={styles.comparePrice.color} onChange={(v) => updateStyle('comparePrice', 'color', v)} />
             <div style={{display: 'flex', gap: '1rem'}}>
-              <ControlInput label="Tamaño (px)" value={styles.comparePrice.fontSize} onChange={(v) => updateStyle('comparePrice', 'fontSize', v)} />
-              <ControlInput label="Grosor" value={styles.comparePrice.fontWeight} onChange={(v) => updateStyle('comparePrice', 'fontWeight', v)} />
+              <ControlInput label="Tamaño (px)" value={styles.comparePrice.fontSize} onChange={(v) => updateStyle('comparePrice', 'fontSize', v)} showStepper />
+              <ControlInput label="Grosor" value={styles.comparePrice.fontWeight} onChange={(v) => updateStyle('comparePrice', 'fontWeight', v)} showStepper />
             </div>
           </div>
 
@@ -157,10 +162,10 @@ export default function App() {
             <ControlInput label="Color Texto" type="color" value={styles.discountContainer.color} onChange={(v) => updateStyle('discountContainer', 'color', v)} />
             <ControlInput label="Color Fondo" type="color" value={styles.discountContainer.backgroundColor} onChange={(v) => updateStyle('discountContainer', 'backgroundColor', v)} />
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
-              <ControlInput label="Tamaño" value={styles.discountContainer.fontSize} onChange={(v) => updateStyle('discountContainer', 'fontSize', v)} />
-              <ControlInput label="Padding" value={styles.discountContainer.padding} onChange={(v) => updateStyle('discountContainer', 'padding', v)} />
+              <ControlInput label="Tamaño" value={styles.discountContainer.fontSize} onChange={(v) => updateStyle('discountContainer', 'fontSize', v)} showStepper />
+              <ControlInput label="Padding" value={styles.discountContainer.padding} onChange={(v) => updateStyle('discountContainer', 'padding', v)} showStepper />
             </div>
-            <ControlInput label="Radio de Borde" value={styles.discountContainer.borderRadius} onChange={(v) => updateStyle('discountContainer', 'borderRadius', v)} />
+            <ControlInput label="Radio de Borde" value={styles.discountContainer.borderRadius} onChange={(v) => updateStyle('discountContainer', 'borderRadius', v)} showStepper />
           </div>
 
           <div className="editor-section">
@@ -168,8 +173,8 @@ export default function App() {
             <ControlInput label="Color Fondo" type="color" value={styles.buyContainer.backgroundColor} onChange={(v) => updateStyle('buyContainer', 'backgroundColor', v)} />
             <ControlInput label="Borde" value={styles.buyContainer.border} onChange={(v) => updateStyle('buyContainer', 'border', v)} />
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
-              <ControlInput label="Padding" value={styles.buyContainer.padding} onChange={(v) => updateStyle('buyContainer', 'padding', v)} />
-              <ControlInput label="Borde Radius" value={styles.buyContainer.borderRadius} onChange={(v) => updateStyle('buyContainer', 'borderRadius', v)} />
+              <ControlInput label="Padding" value={styles.buyContainer.padding} onChange={(v) => updateStyle('buyContainer', 'padding', v)} showStepper />
+              <ControlInput label="Borde Radius" value={styles.buyContainer.borderRadius} onChange={(v) => updateStyle('buyContainer', 'borderRadius', v)} showStepper />
             </div>
           </div>
 
@@ -180,12 +185,12 @@ export default function App() {
               <ControlInput label="Fondo Botón" type="color" value={styles.buyButton.backgroundColor} onChange={(v) => updateStyle('buyButton', 'backgroundColor', v)} />
             </div>
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
-              <ControlInput label="Tamaño (px)" value={styles.buyButton.fontSize} onChange={(v) => updateStyle('buyButton', 'fontSize', v)} />
-              <ControlInput label="Grosor" value={styles.buyButton.fontWeight} onChange={(v) => updateStyle('buyButton', 'fontWeight', v)} />
+              <ControlInput label="Tamaño (px)" value={styles.buyButton.fontSize} onChange={(v) => updateStyle('buyButton', 'fontSize', v)} showStepper />
+              <ControlInput label="Grosor" value={styles.buyButton.fontWeight} onChange={(v) => updateStyle('buyButton', 'fontWeight', v)} showStepper />
             </div>
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
-              <ControlInput label="Padding" value={styles.buyButton.padding} onChange={(v) => updateStyle('buyButton', 'padding', v)} />
-              <ControlInput label="Borde Radius" value={styles.buyButton.borderRadius} onChange={(v) => updateStyle('buyButton', 'borderRadius', v)} />
+              <ControlInput label="Padding" value={styles.buyButton.padding} onChange={(v) => updateStyle('buyButton', 'padding', v)} showStepper />
+              <ControlInput label="Borde Radius" value={styles.buyButton.borderRadius} onChange={(v) => updateStyle('buyButton', 'borderRadius', v)} showStepper />
             </div>
           </div>
 
@@ -234,7 +239,29 @@ export default function App() {
 }
 
 // Simple helper component for inputs
-function ControlInput({ label, type = "text", value, onChange }) {
+function ControlInput({ label, type = "text", value, onChange, showStepper = false }) {
+  const handleStep = (direction) => {
+    const match = String(value).match(/^([0-9.-]+)([a-zA-Z%]*)$/);
+    if (match) {
+      let num = parseFloat(match[1]);
+      let unit = match[2] || '';
+      
+      let step = 1;
+      if (label.toLowerCase().includes('grosor')) {
+        step = 100;
+      }
+
+      num = direction === 'up' ? num + step : num - step;
+      
+      if (label.toLowerCase().includes('grosor')) {
+        if (num < 100) num = 100;
+        if (num > 900) num = 900;
+      }
+      
+      onChange(num + unit);
+    }
+  };
+
   return (
     <div className="control-group" style={{ flex: 1 }}>
       <label className="control-label">{label}</label>
@@ -261,12 +288,20 @@ function ControlInput({ label, type = "text", value, onChange }) {
           />
         </div>
       ) : (
-        <input 
-          type="text" 
-          className="control-input"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
+        <div className={showStepper ? "stepper-wrapper" : ""}>
+          <input 
+            type="text" 
+            className={`control-input ${showStepper ? 'has-stepper' : ''}`}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+          />
+          {showStepper && (
+            <div className="stepper-controls">
+              <button className="stepper-btn" onClick={() => handleStep('down')} type="button">-</button>
+              <button className="stepper-btn" onClick={() => handleStep('up')} type="button">+</button>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
