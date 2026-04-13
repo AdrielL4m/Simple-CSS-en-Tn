@@ -194,8 +194,8 @@ export default function App() {
         <section className="preview-area">
           <div className="preview-container">
             <div className="mock-product">
-              <div className="mock-image"></div>
-              <h3 className="mock-title">Remera Oversize Basic</h3>
+              <img src="/nano-banana.png" alt="Nano Banana" className="mock-image" />
+              <h3 className="mock-title">Nano Banana Gadget</h3>
               
               <div style={{display: 'flex', flexDirection: 'column'}}>
                 <span style={styles.comparePrice}>$45.000</span>
