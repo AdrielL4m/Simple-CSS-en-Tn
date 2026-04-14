@@ -32,6 +32,7 @@ const defaultStyles = {
     border: '1px solid #e2e8f0',
   },
   buyButton: {
+    text: 'Agregar al Carrito',
     color: '#ffffff',
     backgroundColor: '#3b82f6',
     fontSize: '16px',
@@ -141,7 +142,7 @@ export default function App() {
           
           <div className="editor-section">
             <h2 className="section-title">Precio Principal</h2>
-            <ControlInput label="Color" type="color" value={styles.mainPrice.color} onChange={(v) => updateStyle('mainPrice', 'color', v)} />
+            <ControlInput id="mainPrice-color" label="Color" type="color" value={styles.mainPrice.color} onChange={(v) => updateStyle('mainPrice', 'color', v)} />
             <div style={{display: 'flex', gap: '1rem'}}>
               <ControlInput label="Tamaño (px)" value={styles.mainPrice.fontSize} onChange={(v) => updateStyle('mainPrice', 'fontSize', v)} showStepper />
               <ControlInput label="Grosor" value={styles.mainPrice.fontWeight} onChange={(v) => updateStyle('mainPrice', 'fontWeight', v)} showStepper />
@@ -150,7 +151,7 @@ export default function App() {
 
           <div className="editor-section">
             <h2 className="section-title">Precio Tachado</h2>
-            <ControlInput label="Color" type="color" value={styles.comparePrice.color} onChange={(v) => updateStyle('comparePrice', 'color', v)} />
+            <ControlInput id="comparePrice-color" label="Color" type="color" value={styles.comparePrice.color} onChange={(v) => updateStyle('comparePrice', 'color', v)} />
             <div style={{display: 'flex', gap: '1rem'}}>
               <ControlInput label="Tamaño (px)" value={styles.comparePrice.fontSize} onChange={(v) => updateStyle('comparePrice', 'fontSize', v)} showStepper />
               <ControlInput label="Grosor" value={styles.comparePrice.fontWeight} onChange={(v) => updateStyle('comparePrice', 'fontWeight', v)} showStepper />
@@ -159,8 +160,8 @@ export default function App() {
 
           <div className="editor-section">
             <h2 className="section-title">Descuento (Cash/Transfer)</h2>
-            <ControlInput label="Color Texto" type="color" value={styles.discountContainer.color} onChange={(v) => updateStyle('discountContainer', 'color', v)} />
-            <ControlInput label="Color Fondo" type="color" value={styles.discountContainer.backgroundColor} onChange={(v) => updateStyle('discountContainer', 'backgroundColor', v)} />
+            <ControlInput id="discountContainer-color" label="Color Texto" type="color" value={styles.discountContainer.color} onChange={(v) => updateStyle('discountContainer', 'color', v)} />
+            <ControlInput id="discountContainer-bg" label="Color Fondo" type="color" value={styles.discountContainer.backgroundColor} onChange={(v) => updateStyle('discountContainer', 'backgroundColor', v)} />
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
               <ControlInput label="Tamaño" value={styles.discountContainer.fontSize} onChange={(v) => updateStyle('discountContainer', 'fontSize', v)} showStepper />
               <ControlInput label="Padding" value={styles.discountContainer.padding} onChange={(v) => updateStyle('discountContainer', 'padding', v)} showStepper />
@@ -170,7 +171,7 @@ export default function App() {
 
           <div className="editor-section">
             <h2 className="section-title">Contenedor Botón</h2>
-            <ControlInput label="Color Fondo" type="color" value={styles.buyContainer.backgroundColor} onChange={(v) => updateStyle('buyContainer', 'backgroundColor', v)} />
+            <ControlInput id="buyContainer-bg" label="Color Fondo" type="color" value={styles.buyContainer.backgroundColor} onChange={(v) => updateStyle('buyContainer', 'backgroundColor', v)} />
             <ControlInput label="Borde" value={styles.buyContainer.border} onChange={(v) => updateStyle('buyContainer', 'border', v)} />
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
               <ControlInput label="Padding" value={styles.buyContainer.padding} onChange={(v) => updateStyle('buyContainer', 'padding', v)} showStepper />
@@ -180,9 +181,10 @@ export default function App() {
 
           <div className="editor-section">
             <h2 className="section-title">Botón de Compra</h2>
-            <div style={{display: 'flex', gap: '1rem'}}>
-              <ControlInput label="Color Texto" type="color" value={styles.buyButton.color} onChange={(v) => updateStyle('buyButton', 'color', v)} />
-              <ControlInput label="Fondo Botón" type="color" value={styles.buyButton.backgroundColor} onChange={(v) => updateStyle('buyButton', 'backgroundColor', v)} />
+            <ControlInput id="buyButton-text" label="Texto" value={styles.buyButton.text} onChange={(v) => updateStyle('buyButton', 'text', v)} />
+            <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
+              <ControlInput id="buyButton-color" label="Color Texto" type="color" value={styles.buyButton.color} onChange={(v) => updateStyle('buyButton', 'color', v)} />
+              <ControlInput id="buyButton-bg" label="Fondo Botón" type="color" value={styles.buyButton.backgroundColor} onChange={(v) => updateStyle('buyButton', 'backgroundColor', v)} />
             </div>
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
               <ControlInput label="Tamaño (px)" value={styles.buyButton.fontSize} onChange={(v) => updateStyle('buyButton', 'fontSize', v)} showStepper />
@@ -211,12 +213,17 @@ export default function App() {
               </div>
 
               <div style={styles.buyContainer}>
-                <button style={styles.buyButton}>
+                <button style={{...styles.buyButton, text: undefined}}>
                   <ShoppingBag size={18} style={{marginRight: '8px', verticalAlign: 'text-bottom'}} />
-                  Agregar al Carrito
+                  {styles.buyButton.text}
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className="preview-disclaimer" style={{textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '1rem', padding: '0 1rem'}}>
+            <p style={{margin: '0 0 4px 0'}}>La edición de CSS está disponible unicamente a partir del plan inpulso.</p>
+            <p style={{margin: 0}}>Los elementos pueden no cambiar por las limitaciones de cada plantilla de tiendanube.</p>
           </div>
 
           <div className="output-section">
@@ -239,7 +246,9 @@ export default function App() {
 }
 
 // Simple helper component for inputs
-function ControlInput({ label, type = "text", value, onChange, showStepper = false }) {
+function ControlInput({ label, id, type = "text", value, onChange, showStepper = false }) {
+  const inputId = id || label.replace(/\s+/g, '-');
+  
   const handleStep = (direction) => {
     const match = String(value).match(/^([0-9.-]+)([a-zA-Z%]*)$/);
     if (match) {
@@ -272,10 +281,10 @@ function ControlInput({ label, type = "text", value, onChange, showStepper = fal
             value={value !== 'transparent' ? value : '#ffffff'} 
             onChange={(e) => onChange(e.target.value)}
             style={{ opacity: 0, position: 'absolute', width: 0, height: 0 }}
-            id={`color-picker-${label.replace(/\s+/g, '-')}`}
+            id={`color-picker-${inputId}`}
           />
           <label 
-            htmlFor={`color-picker-${label.replace(/\s+/g, '-')}`}
+            htmlFor={`color-picker-${inputId}`}
             className="color-preview" 
             style={{ backgroundColor: value }}
           ></label>
@@ -306,3 +315,4 @@ function ControlInput({ label, type = "text", value, onChange, showStepper = fal
     </div>
   );
 }
+
