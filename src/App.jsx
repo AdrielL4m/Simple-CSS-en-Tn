@@ -220,6 +220,11 @@ export default function App() {
                   {styles.buyButton.text}
                 </button>
               </div>
+
+              <div className="preview-disclaimer" style={{textAlign: 'center', color: '#64748b', fontSize: '12px', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px border #e2e8f0', opacity: 0.8}}>
+                <p style={{margin: '0 0 4px 0'}}>La edición de CSS está disponible unicamente a partir del plan inpulso.</p>
+                <p style={{margin: 0}}>Los elementos pueden no cambiar por las limitaciones de cada plantilla de tiendanube.</p>
+              </div>
             </div>
           </div>
 
@@ -234,11 +239,6 @@ export default function App() {
             <div className="code-block">
               {generateCSS()}
             </div>
-          </div>
-
-          <div className="preview-disclaimer" style={{textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '2rem', padding: '0 1rem'}}>
-            <p style={{margin: '0 0 4px 0'}}>La edición de CSS está disponible unicamente a partir del plan inpulso.</p>
-            <p style={{margin: 0}}>Los elementos pueden no cambiar por las limitaciones de cada plantilla de tiendanube.</p>
           </div>
 
         </section>
