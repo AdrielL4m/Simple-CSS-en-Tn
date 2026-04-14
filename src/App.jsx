@@ -5,6 +5,7 @@ import './index.css';
 // Initial state for all the CSS variables we want to edit
 const defaultStyles = {
   discountContainer: {
+    text: '10% OFF pagando con Transferencia',
     color: '#10b981',
     fontSize: '14px',
     fontWeight: '600',
@@ -160,6 +161,7 @@ export default function App() {
 
           <div className="editor-section">
             <h2 className="section-title">Descuento (Cash/Transfer)</h2>
+            <ControlInput id="discountContainer-text" label="Texto" value={styles.discountContainer.text} onChange={(v) => updateStyle('discountContainer', 'text', v)} />
             <ControlInput id="discountContainer-color" label="Color Texto" type="color" value={styles.discountContainer.color} onChange={(v) => updateStyle('discountContainer', 'color', v)} />
             <ControlInput id="discountContainer-bg" label="Color Fondo" type="color" value={styles.discountContainer.backgroundColor} onChange={(v) => updateStyle('discountContainer', 'backgroundColor', v)} />
             <div style={{display: 'flex', gap: '1rem', marginTop: '0.5rem'}}>
@@ -207,8 +209,8 @@ export default function App() {
               <div style={{display: 'flex', flexDirection: 'column'}}>
                 <span style={styles.comparePrice}>$45.000</span>
                 <span style={styles.mainPrice}>$35.000</span>
-                <div style={styles.discountContainer}>
-                  10% OFF pagando con Transferencia
+                <div style={{...styles.discountContainer, text: undefined}}>
+                  {styles.discountContainer.text}
                 </div>
               </div>
 
@@ -219,11 +221,6 @@ export default function App() {
                 </button>
               </div>
             </div>
-          </div>
-
-          <div className="preview-disclaimer" style={{textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '1rem', padding: '0 1rem'}}>
-            <p style={{margin: '0 0 4px 0'}}>La edición de CSS está disponible unicamente a partir del plan inpulso.</p>
-            <p style={{margin: 0}}>Los elementos pueden no cambiar por las limitaciones de cada plantilla de tiendanube.</p>
           </div>
 
           <div className="output-section">
@@ -237,6 +234,11 @@ export default function App() {
             <div className="code-block">
               {generateCSS()}
             </div>
+          </div>
+
+          <div className="preview-disclaimer" style={{textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '2rem', padding: '0 1rem'}}>
+            <p style={{margin: '0 0 4px 0'}}>La edición de CSS está disponible unicamente a partir del plan inpulso.</p>
+            <p style={{margin: 0}}>Los elementos pueden no cambiar por las limitaciones de cada plantilla de tiendanube.</p>
           </div>
 
         </section>
