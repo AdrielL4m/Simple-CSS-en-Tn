@@ -230,7 +230,8 @@ body {
   flex-direction: row;
   padding: 2.5rem;
   gap: 2.5rem;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   /* Additional decorative gradient light in the main area */
   background: radial-gradient(100% 100% at top right, rgba(59, 130, 246, 0.1) 0%, transparent 100%),
               radial-gradient(100% 100% at bottom right, rgba(167, 139, 250, 0.1) 0%, transparent 100%);
@@ -242,6 +243,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  position: sticky;
+  top: 0;
+  height: fit-content;
 }
 
 /* Simulated Product Card */
@@ -355,4 +359,69 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+/* Light Theme */
+body.light-theme {
+  --surface: #f8fafc;
+  --surface-container: #e2e8f0;
+  --surface-hover: #cbd5e1;
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --accent: #10b981;
+  --border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  background: radial-gradient(circle at top center, #e0e7ff, #f8fafc 40%, #f1f5f9);
+  color: var(--on-surface);
+}
+
+body.light-theme .app-title {
+  color: #3b82f6;
+}
+
+body.light-theme .developer-link {
+  color: #3b82f6;
+}
+
+body.light-theme .control-input {
+  background: rgba(255, 255, 255, 0.5);
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+body.light-theme .control-label {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-theme .stepper-btn {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .stepper-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .code-block {
+  background: rgba(255, 255, 255, 0.8);
+  color: #059669;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: inset 0 4px 16px rgba(0,0,0,0.05);
+}
+
+body.light-theme ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }

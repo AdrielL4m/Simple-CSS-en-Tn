@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Settings2, ShoppingBag, Copy, CheckCircle2 } from 'lucide-react';
+import { Settings2, ShoppingBag, Copy, CheckCircle2, Sun, Moon } from 'lucide-react';
 import './index.css';
 
 // Initial state for all the CSS variables we want to edit
@@ -48,6 +48,15 @@ const defaultStyles = {
 export default function App() {
   const [styles, setStyles] = useState(defaultStyles);
   const [copied, setCopied] = useState(false);
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    if (isLight) {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  }, [isLight]);
 
   // Update a specific style property
   const updateStyle = (section, property, value) => {
@@ -130,12 +139,21 @@ export default function App() {
     <>
       <header className="app-header">
         <div className="app-title-group">
-          <Settings2 size={28} color="#558A87" />
+          <Settings2 size={28} color={isLight ? '#3b82f6' : '#558A87'} />
           <h1 className="app-title">Simple CSS para Tiendanube</h1>
         </div>
-        <a className="developer-link" href="https://viranmd.com" target="_blank" rel="noreferrer">
-          Desarrollado por Viran
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <button 
+            onClick={() => setIsLight(!isLight)} 
+            style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--on-surface)', display: 'flex', padding: '4px' }}
+            title={isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro"}
+          >
+            {isLight ? <Moon size={24} /> : <Sun size={24} />}
+          </button>
+          <a className="developer-link" href="https://viranmd.com" target="_blank" rel="noreferrer">
+            Desarrollado por Viran
+          </a>
+        </div>
       </header>
       
       <main className="main-content">
