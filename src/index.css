@@ -1,33 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* ==========================================================================
+   Tiendanube Nimbus Design System Tokens & Global Styles
+   ========================================================================== */
+
 :root {
-  --surface: #0f172a;
-  --surface-container: #1e293b;
-  --surface-hover: #334155;
-  --on-surface: #f8fafc;
-  --on-surface-variant: #cbd5e1;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --accent: #10b981;
-  --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(30, 41, 59, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Nimbus Color Tokens */
+  --nimbus-primary: #0059d5;
+  --nimbus-primary-hover: #00429f;
+  --nimbus-primary-active: #00347d;
+  --nimbus-primary-surface: #eef5ff;
+  --nimbus-primary-surface-highlight: #96c1fc;
+  --nimbus-primary-text-low: #00255a;
+
+  /* Neutral Surface Tokens */
+  --nimbus-surface-page: #f7f8fa;
+  --nimbus-surface-card: #ffffff;
+  --nimbus-surface-subtle: #f1f3f5;
+  --nimbus-surface-hover: #e9ecef;
+  --nimbus-surface-active: #dee2e6;
+
+  /* Text Color Tokens */
+  --nimbus-text-high: #212b36;
+  --nimbus-text-medium: #454f5b;
+  --nimbus-text-low: #637381;
+  --nimbus-text-disabled: #919eab;
+
+  /* Border & Line Tokens */
+  --nimbus-border-neutral: #e2e8f0;
+  --nimbus-border-hover: #cbd5e1;
+  --nimbus-border-focus: #0059d5;
+  --nimbus-border-subtle: #f1f5f9;
+
+  /* Status Colors */
+  --nimbus-success: #008060;
+  --nimbus-success-surface: #f0fdf4;
+  --nimbus-success-border: #bbf7d0;
+  --nimbus-info: #0059d5;
+  --nimbus-info-surface: #eff6ff;
+  --nimbus-info-border: #bfdbfe;
+  --nimbus-warning: #b45309;
+  --nimbus-warning-surface: #fffbeb;
+  --nimbus-warning-border: #fde68a;
+
+  /* Shadows */
+  --nimbus-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --nimbus-shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --nimbus-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --nimbus-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+
+  /* Border Radii */
+  --nimbus-radius-sm: 4px;
+  --nimbus-radius-md: 8px;
+  --nimbus-radius-lg: 12px;
+  --nimbus-radius-full: 9999px;
+
+  /* Fonts */
+  --nimbus-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--nimbus-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  /* Colorful animated background for glassmorphism to pop */
-  background: radial-gradient(circle at top center, #1e1b4b, #0f172a 40%, #020617);
-  background-attachment: fixed;
-  color: var(--on-surface);
+  background-color: var(--nimbus-surface-page);
+  color: var(--nimbus-text-high);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,415 +79,702 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  min-height: 100vh;
 }
 
-/* App Layout */
-.app-header {
-  padding: 1.5rem 2rem;
-  background: rgba(15, 23, 42, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+/* ==========================================================================
+   Header - Tiendanube Admin App Bar
+   ========================================================================== */
+
+.nimbus-header {
+  background-color: var(--nimbus-surface-card);
+  border-bottom: 1px solid var(--nimbus-border-neutral);
+  padding: 0.85rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--nimbus-shadow-sm);
 }
 
-.app-title-group {
+.nimbus-brand-group {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
-.app-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #f8fafc;
-  letter-spacing: -0.5px;
-}
-
-.developer-link {
-  color: #cbd5e1;
-  font-size: 0.85rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.2s;
-}
-
-.developer-link:hover {
-  color: #f8fafc;
-}
-
-.main-content {
+.nimbus-logo-badge {
+  background: linear-gradient(135deg, #0059d5 0%, #00429f 100%);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--nimbus-radius-md);
   display: flex;
-  flex: 1;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 89, 213, 0.25);
 }
 
-/* Left Panel */
-.sidebar {
-  width: 400px;
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 1.5rem;
+.nimbus-brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nimbus-brand-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--nimbus-text-high);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.2px;
+}
+
+.nimbus-sdk-tag {
+  background-color: var(--nimbus-primary-surface);
+  color: var(--nimbus-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--nimbus-radius-full);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--nimbus-primary-surface-highlight);
+}
+
+.nimbus-brand-subtitle {
+  font-size: 0.75rem;
+  color: var(--nimbus-text-low);
+}
+
+.nimbus-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   Page Layout & Container
+   ========================================================================== */
+
+.nimbus-app-container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  flex: 1;
 }
 
-.editor-section {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+/* Plan Alert Banner */
+.nimbus-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--nimbus-radius-md);
+  border: 1px solid var(--nimbus-info-border);
+  background-color: var(--nimbus-info-surface);
+  color: var(--nimbus-primary-text-low);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.nimbus-alert-icon {
+  color: var(--nimbus-info);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.nimbus-alert-content {
+  flex: 1;
+}
+
+.nimbus-alert-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #00347d;
+}
+
+/* Presets Bar */
+.nimbus-presets-bar {
+  background-color: var(--nimbus-surface-card);
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: var(--nimbus-radius-md);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  box-shadow: var(--nimbus-shadow-sm);
+}
+
+.nimbus-presets-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--nimbus-text-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nimbus-presets-list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nimbus-preset-chip {
+  background-color: var(--nimbus-surface-subtle);
+  border: 1px solid var(--nimbus-border-neutral);
+  color: var(--nimbus-text-high);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--nimbus-radius-full);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nimbus-preset-chip:hover {
+  background-color: var(--nimbus-surface-hover);
+  border-color: var(--nimbus-border-hover);
+  color: var(--nimbus-primary);
+}
+
+.nimbus-preset-chip.active {
+  background-color: var(--nimbus-primary-surface);
+  border-color: var(--nimbus-primary);
+  color: var(--nimbus-primary);
+  font-weight: 600;
+}
+
+/* Main Dashboard Grid */
+.nimbus-dashboard-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .nimbus-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Nimbus Card Components
+   ========================================================================== */
+
+.nimbus-card {
+  background-color: var(--nimbus-surface-card);
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: var(--nimbus-radius-md);
+  box-shadow: var(--nimbus-shadow-card);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nimbus-card:hover {
+  border-color: var(--nimbus-border-hover);
+}
+
+.nimbus-card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--nimbus-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nimbus-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--nimbus-text-high);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nimbus-card-badge {
+  font-size: 0.6875rem;
+  font-family: monospace;
+  background-color: var(--nimbus-surface-subtle);
+  color: var(--nimbus-text-low);
+  padding: 2px 6px;
+  border-radius: var(--nimbus-radius-sm);
+  border: 1px solid var(--nimbus-border-neutral);
+}
+
+.nimbus-card-body {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), var(--glass-shadow);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.editor-section:hover {
-  transform: translateY(-2px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 12px 40px 0 rgba(0, 0, 0, 0.35);
-  border-color: rgba(255, 255, 255, 0.15);
+/* Sidebar Sections Stack */
+.nimbus-editor-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.section-title {
-  font-size: 1.05rem;
+/* ==========================================================================
+   Nimbus Form Controls
+   ========================================================================== */
+
+.nimbus-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.nimbus-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.nimbus-label {
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--on-surface);
+  color: var(--nimbus-text-high);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* FIX: Ensure flex children can shrink below their content size to prevent overflow */
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 0; /* Crucial for preventing overflow */
-  flex: 1;
+.nimbus-label-hint {
+  font-size: 0.75rem;
+  color: var(--nimbus-text-low);
+  font-weight: 400;
 }
 
-.control-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.control-input {
-  /* Modern Glass Input */
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  padding: 0.6rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  outline: none;
-  transition: all 0.2s;
+.nimbus-input {
   width: 100%;
-  min-width: 0; /* Prevent input from pushing layout out */
-  backdrop-filter: blur(4px);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  height: 38px;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--nimbus-text-high);
+  background-color: #ffffff;
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: var(--nimbus-radius-sm);
+  outline: none;
+  transition: all 0.15s ease;
 }
 
-.control-input.has-stepper {
-  padding-right: 60px;
+.nimbus-input:focus {
+  border-color: var(--nimbus-primary);
+  box-shadow: 0 0 0 3px rgba(0, 89, 213, 0.15);
 }
 
-.stepper-wrapper {
+.nimbus-input:hover:not(:focus) {
+  border-color: var(--nimbus-border-hover);
+}
+
+/* Stepper Control */
+.nimbus-stepper-wrapper {
   position: relative;
   display: flex;
-  width: 100%;
   align-items: center;
+  width: 100%;
 }
 
-.stepper-controls {
-  display: flex;
+.nimbus-stepper-wrapper .nimbus-input {
+  padding-right: 56px;
+}
+
+.nimbus-stepper-buttons {
   position: absolute;
-  right: 4px;
+  right: 3px;
+  display: flex;
+  align-items: center;
   gap: 2px;
 }
 
-.stepper-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 4px;
-  color: #fff;
+.nimbus-stepper-btn {
   width: 24px;
-  height: 24px;
+  height: 32px;
+  background-color: var(--nimbus-surface-subtle);
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: 3px;
+  color: var(--nimbus-text-medium);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
-  font-weight: bold;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
 }
 
-.stepper-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+.nimbus-stepper-btn:hover {
+  background-color: var(--nimbus-surface-hover);
+  color: var(--nimbus-primary);
+  border-color: var(--nimbus-border-hover);
 }
 
-.control-input:focus {
-  border-color: var(--primary);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 0 2px rgba(59, 130, 246, 0.3);
+.nimbus-stepper-btn:active {
+  background-color: var(--nimbus-surface-active);
 }
 
-.color-input-wrapper {
+/* Color Picker Input */
+.nimbus-color-wrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  min-width: 0;
-  width: 100%;
+  position: relative;
 }
 
-.color-preview {
-  min-width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+.nimbus-color-swatch-label {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--nimbus-radius-sm);
+  border: 1px solid var(--nimbus-border-neutral);
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-
-.color-preview:hover {
-  transform: scale(1.05);
-}
-
-/* Right Panel */
-.preview-area {
-  flex: 1;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  transition: transform 0.1s ease, border-color 0.15s ease;
   display: flex;
-  flex-direction: row;
-  padding: 2.5rem;
-  gap: 2.5rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* Additional decorative gradient light in the main area */
-  background: radial-gradient(100% 100% at top right, rgba(59, 130, 246, 0.1) 0%, transparent 100%),
-              radial-gradient(100% 100% at bottom right, rgba(167, 139, 250, 0.1) 0%, transparent 100%);
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.preview-container {
-  flex: 1;
-  background: transparent; 
+.nimbus-color-swatch-label:hover {
+  transform: scale(1.04);
+  border-color: var(--nimbus-primary);
+}
+
+.nimbus-hidden-color-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Select Control */
+.nimbus-select {
+  width: 100%;
+  height: 38px;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--nimbus-text-high);
+  background-color: #ffffff;
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: var(--nimbus-radius-sm);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nimbus-select:focus {
+  border-color: var(--nimbus-primary);
+  box-shadow: 0 0 0 3px rgba(0, 89, 213, 0.15);
+}
+
+/* Buttons */
+.nimbus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 38px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--nimbus-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.nimbus-btn-primary {
+  background-color: var(--nimbus-primary);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 89, 213, 0.2);
+}
+
+.nimbus-btn-primary:hover {
+  background-color: var(--nimbus-primary-hover);
+}
+
+.nimbus-btn-primary:active {
+  background-color: var(--nimbus-primary-active);
+}
+
+.nimbus-btn-secondary {
+  background-color: var(--nimbus-surface-card);
+  color: var(--nimbus-text-high);
+  border-color: var(--nimbus-border-neutral);
+}
+
+.nimbus-btn-secondary:hover {
+  background-color: var(--nimbus-surface-subtle);
+  border-color: var(--nimbus-border-hover);
+}
+
+.nimbus-btn-ghost {
+  background-color: transparent;
+  color: var(--nimbus-text-medium);
+}
+
+.nimbus-btn-ghost:hover {
+  background-color: var(--nimbus-surface-hover);
+  color: var(--nimbus-text-high);
+}
+
+/* ==========================================================================
+   Preview & Output Column
+   ========================================================================== */
+
+.nimbus-preview-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 5rem;
+}
+
+.nimbus-viewport-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: var(--nimbus-surface-subtle);
+  border-bottom: 1px solid var(--nimbus-border-neutral);
+}
+
+.nimbus-viewport-switch {
+  display: flex;
+  background-color: #e2e8f0;
+  padding: 2px;
+  border-radius: var(--nimbus-radius-sm);
+  gap: 2px;
+}
+
+.nimbus-viewport-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--nimbus-text-medium);
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.nimbus-viewport-btn.active {
+  background-color: #ffffff;
+  color: var(--nimbus-primary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+/* Tiendanube Storefront Simulation */
+.nimbus-storefront-wrapper {
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  position: sticky;
-  top: 2.5rem;
-  height: fit-content;
-  align-self: flex-start;
-}
-
-/* Simulated Product Card */
-.mock-product {
-  width: 100%;
-  max-width: 420px;
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  color: #1e293b;
-}
-
-.mock-image {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-}
-
-.mock-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
-}
-
-/* Output Area */
-.output-section {
-  flex: 1;
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  box-shadow: var(--glass-shadow), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-}
-
-.code-title {
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
+  background-color: #f1f3f5;
+  min-height: 440px;
   align-items: center;
-  font-size: 1.1rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+.nimbus-store-card {
+  background-color: #ffffff;
+  border-radius: var(--nimbus-radius-md);
+  box-shadow: var(--nimbus-shadow-md);
+  border: 1px solid var(--nimbus-border-neutral);
+  overflow: hidden;
+  transition: width 0.3s ease, max-width 0.3s ease;
+  width: 100%;
+  max-width: 440px;
+}
+
+.nimbus-store-card.mobile-mode {
+  max-width: 320px;
+}
+
+.nimbus-store-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  background-color: #f8fafc;
+  overflow: hidden;
+}
+
+.nimbus-store-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.nimbus-store-card:hover .nimbus-store-card-image {
+  transform: scale(1.02);
+}
+
+.nimbus-store-card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nimbus-product-category {
+  font-size: 0.6875rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--nimbus-text-low);
+  margin-bottom: 0.35rem;
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.nimbus-product-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 0.85rem;
 }
 
-.btn-secondary:active {
-  transform: translateY(1px);
+.nimbus-prices-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.code-block {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  color: #34d399;
-  padding: 1.5rem;
-  border-radius: 12px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
+.nimbus-store-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--nimbus-border-neutral);
+  font-size: 0.75rem;
+  color: var(--nimbus-text-medium);
+}
+
+.nimbus-store-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Generated CSS Output Area */
+.nimbus-code-container {
+  background-color: #0f172a;
+  border-radius: var(--nimbus-radius-md);
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+.nimbus-code-header {
+  background-color: #1e293b;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #334155;
+}
+
+.nimbus-code-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nimbus-code-pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
   overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  flex: 1;
-  box-shadow: inset 0 4px 16px rgba(0,0,0,0.6);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #38bdf8;
+  max-height: 280px;
 }
 
-/* Stylish Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+/* Instructions Guide */
+.nimbus-guide-box {
+  background-color: var(--nimbus-surface-card);
+  border: 1px solid var(--nimbus-border-neutral);
+  border-radius: var(--nimbus-radius-md);
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
 }
 
-/* Light Theme */
-body.light-theme {
-  --surface: #f1f5f9;
-  --surface-container: #e2e8f0;
-  --surface-hover: #cbd5e1;
-  --on-surface: #0f172a;
-  --on-surface-variant: #475569;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --accent: #10b981;
-  --border: rgba(0, 0, 0, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  background: radial-gradient(circle at top center, #cbd5e1, #e2e8f0 40%, #94a3b8);
-  color: var(--on-surface);
+.nimbus-guide-title {
+  font-weight: 600;
+  color: var(--nimbus-text-high);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-body.light-theme .app-header {
-  background: rgba(15, 23, 42, 0.8);
+.nimbus-guide-steps {
+  margin-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--nimbus-text-medium);
 }
 
-body.light-theme .app-title {
-  color: #f8fafc;
+.nimbus-guide-steps code {
+  background-color: var(--nimbus-surface-subtle);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--nimbus-primary);
+  border: 1px solid var(--nimbus-border-neutral);
 }
 
-body.light-theme .developer-link {
-  color: #cbd5e1;
+/* Footer */
+.nimbus-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--nimbus-border-neutral);
+  padding: 1.25rem 2rem;
+  background-color: var(--nimbus-surface-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--nimbus-text-low);
 }
 
-body.light-theme .sidebar {
-  background: rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+.nimbus-footer a {
+  color: var(--nimbus-primary);
+  text-decoration: none;
+  font-weight: 500;
 }
 
-body.light-theme .editor-section {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-}
-
-body.light-theme .control-input {
-  background: rgba(255, 255, 255, 0.8);
-  color: #0f172a;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-}
-
-body.light-theme .control-label {
-  color: rgba(0, 0, 0, 0.7);
-}
-
-body.light-theme .stepper-btn {
-  color: #0f172a;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .stepper-btn:hover {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-body.light-theme .output-section {
-  background: rgba(15, 23, 42, 0.9);
-  color: #f8fafc;
-}
-
-body.light-theme .code-title {
-  color: #f8fafc;
-}
-
-body.light-theme .code-block {
-  background: rgba(0, 0, 0, 0.3);
-  color: #34d399;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: inset 0 4px 16px rgba(0,0,0,0.2);
-}
-
-body.light-theme ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-body.light-theme ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+.nimbus-footer a:hover {
+  text-decoration: underline;
 }
